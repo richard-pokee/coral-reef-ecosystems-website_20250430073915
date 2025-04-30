@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang=\"en\">
+<head>
+    <meta charset=\"UTF-8\">
+    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
+    <title>Coral Reef Ecosystems</title>
+    <style>
+        /* Global Styles */
+        :root {
+            --primary-color: #0099cc;
+            --secondary-color: #ff9933;
+            --accent-color: #33cc99;
+            --light-bg: #f0f8ff;
+            --dark-bg: #003366;
+            --text-light: #ffffff;
+            --text-dark: #333333;
+            --transition: all 0.3s ease-in-out;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--light-bg);
+            overflow-x: hidden;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--dark-bg);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 80px;
+            height: 4px;
+            background: var(--secondary-color);
+            border-radius: 2px;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        /* Layout */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 4rem 0;
+        }
+
+        section:nth-child(even) {
+            background-color: white;
+        }
+
+        /* Header */
+        header {
+            background-image: linear-gradient(rgba(0, 51, 102, 0.8), rgba(0, 51, 102, 0.8)), url('https://oceanservice.noaa.gov/facts/coral_reef.jpg');
+            background-size: cover;
+            background-position: center;
+            color: var(--text-light);
+            padding: 150px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        header p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: var(--dark-bg);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            color: var(--text-light);
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 1.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 0.5rem 0;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary-color);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            color: var(--text-light);
+            font-size: 1.5rem;
+        }
+
+        /* Card Styles */
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: var(--transition);
+            height: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        /* Grid Layout */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        /* Flex Layout */
+        .flex {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .flex-column {
+            flex-direction: column;
+        }
+
+        .align-center {
+            align-items: center;
+        }
+
+        .justify-center {
+            justify-content: center;
+        }
+
+        .space-between {
+            justify-content: space-between;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn:hover {
+            background-color: var(--dark-bg);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+        }
+
+        /* Images */
+        .img-fluid {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .img-round {
+            border-radius: 50%;
+        }
+
+        /* Features */
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        /* Facts Section */
+        .fact-card {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        .fact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .fact-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            height: 250px;
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 51, 102, 0.7);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            opacity: 0;
+            transition: var(--transition);
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-item:hover .gallery-img {
+            transform: scale(1.1);
+        }
+
+        /* Charts */
+        .chart-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin: 2rem 0;
+        }
+
+        /* Table */
+        .table-container {
+            overflow-x: auto;
+            margin: 2rem 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .tab-header {
+            display: flex;
+            background: var(--dark-bg);
+            width: 100%;
+        }
+
+        .tab-btn {
+            padding: 1rem 2rem;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .tab-btn.active {
+            background: var(--primary-color);
+        }
+
+        .tab-btn:hover {
+            background: rgba(0, 153, 204, 0.5);
+        }
+
+        .tab-content {
+            display: none;
+            padding: 2rem;
+            background: white;
+            width: 100%;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Accordion */
+        .accordion {
+            margin: 2rem 0;
+        }
+
+        .accordion-item {
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .accordion-header {
+            padding: 1rem;
+            background: var(--primary-color);
+            color: var(--text-light);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .accordion-header:hover {
+            background: var(--dark-bg);
+        }
+
+        .accordion-content {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            background: white;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .accordion-content-inner {
+            padding: 1rem;
+        }
+
+        .accordion-item.active .accordion-content {
+            max-height: 500px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .footer-heading {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-heading::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--secondary-color);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary-color);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            font-size: 1.5rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 999;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: var(--dark-bg);
+            transform: translateY(-5px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .grid, .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.75rem;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--dark-bg);
+                flex-direction: column;
+                align-items: center;
+                padding: 1rem 0;
+                max-height: 0;
+                overflow: hidden;
+                transition: var(--transition);
+            }
+
+            .nav-links.active {
+                max-height: 300px;
+            }
+
+            .nav-links li {
+                margin: 0.5rem 0;
+            }
+
+            .flex {
+                flex-direction: column;
+            }
+
+            .fact-card {
+                margin-bottom: 1rem;
+            }
+
+            .tab-header {
+                flex-wrap: wrap;
+            }
+
+            .tab-btn {
+                flex: 1 0 50%;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .grid, .grid-2, .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header id=\"home\">
+        <div class=\"container\">
+            <h1>Coral Reef Ecosystems</h1>
+            <p>Explore the vibrant underwater cities that are home to 25% of all marine life</p>
+            <a href=\"#learn-more\" class=\"btn\">Learn More</a>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <div class=\"container nav-container\">
+            <a href=\"#\" class=\"logo\">Coral Reefs</a>
+            <div class=\"menu-toggle\" id=\"menuToggle\">☰</div>
+            <ul class=\"nav-links\" id=\"navLinks\">
+                <li><a href=\"#home\">Home</a></li>
+                <li><a href=\"#about\">About</a></li>
+                <li><a href=\"#diversity\">Diversity</a></li>
+                <li><a href=\"#zones\">Zones</a></li>
+                <li><a href=\"#location\">Location</a></li>
+                <li><a href=\"#importance\">Importance</a></li>
+                <li><a href=\"#gallery\">Gallery</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- About Section -->
+    <section id=\"about\">
+        <div class=\"container\">
+            <h2>What Are Coral Reefs?</h2>
+            <div class=\"flex align-center\" style=\"margin-top: 2rem;\">
+                <div>
+                    <p>Coral reefs are underwater ecosystems characterized by reef-building corals. Reefs are formed of colonies of coral polyps held together by calcium carbonate. Most coral reefs are built from stony corals, whose polyps cluster in groups.</p>
+                    <p>Often called \"rainforests of the sea,\" coral reefs are among the most biologically diverse and valuable ecosystems on Earth. They occupy less than 1% of the ocean floor but are home to more than 25% of all marine species.</p>
+                    <p>Corals are actually tiny animals called polyps that belong to the same group as jellyfish and anemones. Polyps live in symbiosis with photosynthetic algae called zooxanthellae, which provide the coral with food and give them their vibrant colors.</p>
+                    <a href=\"#diversity\" class=\"btn btn-outline\">Explore Coral Diversity</a>
+                </div>
+                <img src=\"https://oceanservice.noaa.gov/facts/coral_polyp.jpg\" alt=\"Coral Polyps\" class=\"img-fluid\" style=\"max-width: 500px;\">
+            </div>
+        </div>
+    </section>
+
+    <!-- Diversity Section -->
+    <section id=\"diversity\">
+        <div class=\"container\">
+            <h2>The Incredible Diversity of Coral Reefs</h2>
+            <p>Coral reefs are among the most diverse ecosystems on the planet, supporting an extraordinary variety of marine life.</p>
+            
+            <div class=\"tabs\">
+                <div class=\"tab-header\">
+                    <button class=\"tab-btn active\" data-tab=\"types\">Types of Coral</button>
+                    <button class=\"tab-btn\" data-tab=\"species\">Marine Species</button>
+                    <button class=\"tab-btn\" data-tab=\"components\">Reef Components</button>
+                </div>
+                
+                <div class=\"tab-content active\" id=\"types\">
+                    <h3>Major Types of Coral Reefs</h3>
+                    <div class=\"grid\">
+                        <div class=\"card\">
+                            <img src=\"https://oceanservice.noaa.gov/education/tutorial_corals/media/coral05a_480.jpg\" alt=\"Fringing Reef\" class=\"card-img\">
+                            <div class=\"card-content\">
+                                <h3>Fringing Reefs</h3>
+                                <p>These reefs grow near the coastline around islands and continents. They are separated from the shore by narrow, shallow lagoons. Fringing reefs are the most common type of reef.</p>
+                            </div>
+                        </div>
+                        <div class=\"card\">
+                            <img src=\"https://oceanservice.noaa.gov/facts/barrier-reef.jpg\" alt=\"Barrier Reef\" class=\"card-img\">
+                            <div class=\"card-content\">
+                                <h3>Barrier Reefs</h3>
+                                <p>These reefs are separated from land by a lagoon of open, often deep water. The Great Barrier Reef in Australia is the largest and most famous barrier reef in the world.</p>
+                            </div>
+                        </div>
+                        <div class=\"card\">
+                            <img src=\"https://oceanservice.noaa.gov/education/tutorial_corals/media/coral05c_480.jpg\" alt=\"Atoll\" class=\"card-img\">
+                            <div class=\"card-content\">
+                                <h3>Atolls</h3>
+                                <p>These are rings of coral that create protected lagoons and are usually located in the middle of the sea. Atolls usually form when islands surrounded by fringing reefs sink into the sea or the sea level rises around them.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class=\"tab-content\" id=\"species\">
+                    <h3>Incredible Marine Biodiversity</h3>
+                    <div class=\"grid\">
+                        <div class=\"card\">
+                            <img src=\"https://oceanservice.noaa.gov/facts/coral-species.jpg\" alt=\"Coral Species\" class=\"card-img\">
+                            <div class=\"card-content\">
+                                <h3>Coral Species</h3>
+                                <p>Scientists have identified approximately 800 species of reef-building corals and thousands of other soft corals, invertebrates, and algae species.</p>
+                            </div>
+                        </div>
+                        <div class=\"card\">
+                            <img src=\"https://oceanservice.noaa.gov/facts/reef-fish.jpg\" alt=\"Reef Fish\" class=\"card-img\">
+                            <div class=\"card-content\">
+                                <h3>Reef Fish</h3>
+                                <p>More than 4,000 species of fish make their home in coral reefs, including angelfish, clownfish, parrotfish, and many others that contribute to the reef's vibrant ecosystem.</p>
+                            </div>
+                        </div>
+                        <div class=\"card\">
+                            <img src=\"https://oceanservice.noaa.gov/facts/coral-invertebrates.jpg\" alt=\"Invertebrates\" class=\"card-img\">
+                            <div class=\"card-content\">
+                                <h3>Invertebrates</h3>
+                                <p>Thousands of invertebrate species like crustaceans, mollusks, sponges, and echinoderms thrive in the complex reef environment, each playing a unique role in the ecosystem.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class=\"tab-content\" id=\"components\">
+                    <h3>Essential Components of Reef Ecosystems</h3>
+                    <div class=\"grid-2 grid\">
+                        <div class=\"card\">
+                            <img src=\"https://oceanservice.noaa.gov/education/tutorial_corals/media/coral03a_480.jpg\" alt=\"Coral Polyps\" class=\"card-img\">
+                            <div class=\"card-content\">
+                                <h3>Coral Polyps</h3>
+                                <p>These tiny animals are the building blocks of coral reefs. Each polyp has a sac-like body and an opening, or mouth, encircled by stinging tentacles. They extract calcium from seawater and create a hard, cup-shaped skeleton of limestone around themselves for protection.</p>
+                            </div>
+                        </div>
+                        <div class=\"card\">
+                            <img src=\"https://oceanservice.noaa.gov/facts/zooxanthellae.jpg\" alt=\"Zooxanthellae\" class=\"card-img\">
+                            <div class=\"card-content\">
+                                <h3>Zooxanthellae</h3>
+                                <p>These microscopic algae live in the coral's tissues and have a mutually beneficial relationship with coral polyps. Through photosynthesis, they provide the coral with oxygen and nutrients, removing waste products at the same time. They are also responsible for the vibrant colors of many corals.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Symbiotic Relationships Section -->
+    <section id=\"symbiosis\">
+        <div class=\"container\">
+            <h2>Symbiotic Relationships</h2>
+            <p>Coral reef ecosystems thrive on complex relationships between different organisms. These symbiotic relationships are crucial for the survival and health of the reef.</p>
+            
+            <div class=\"accordion\">
+                <div class=\"accordion-item\">
+                    <div class=\"accordion-header\">
+                        <h3>Coral and Zooxanthellae: The Foundation of Reefs</h3>
+                        <span class=\"accordion-icon\">+</span>
+                    </div>
+                    <div class=\"accordion-content\">
+                        <div class=\"accordion-content-inner\">
+                            <div class=\"flex align-center\">
+                                <div>
+                                    <p>The most important symbiotic relationship in coral reef ecosystems is between coral polyps and zooxanthellae algae. This is a mutualistic relationship where both organisms benefit:</p>
+                                    <ul style=\"margin-bottom: 1rem; padding-left: 1.5rem;\">
+                                        <li>Zooxanthellae provide corals with oxygen and up to 90% of their energy needs through photosynthesis</li>
+                                        <li>Corals provide the algae with protection and compounds needed for photosynthesis</li>
+                                        <li>This relationship allows corals to grow and build reefs in nutrient-poor tropical waters</li>
+                                        <li>When ocean temperatures rise, this relationship can break down resulting in coral bleaching</li>
+                                    </ul>
+                                </div>
+                                <img src=\"https://oceanservice.noaa.gov/facts/zooxanthellae.jpg\" alt=\"Zooxanthellae and Coral\" style=\"max-width: 300px; border-radius: 8px;\">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class=\"accordion-item\">
+                    <div class=\"accordion-header\">
+                        <h3>Cleaner Fish and Their Clients</h3>
+                        <span class=\"accordion-icon\">+</span>
+                    </div>
+                    <div class=\"accordion-content\">
+                        <div class=\"accordion-content-inner\">
+                            <div class=\"flex align-center\">
+                                <img src=\"https://oceanservice.noaa.gov/facts/cleaner-fish.jpg\" alt=\"Cleaner Fish\" style=\"max-width: 300px; border-radius: 8px;\">
+                                <div>
+                                    <p>Cleaner fish and shrimp provide a valuable service to larger fish on the reef:</p>
+                                    <ul style=\"margin-bottom: 1rem; padding-left: 1.5rem;\">
+                                        <li>They remove parasites, dead skin, and other debris from larger \"client\" fish</li>
+                                        <li>The cleaners get a meal, while the clients get cleaned of harmful parasites</li>
+                                        <li>Cleaner stations on the reef are recognized by many fish species who wait their turn for cleaning</li>
+                                        <li>This relationship demonstrates how cooperation can evolve in complex ecosystems</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class=\"accordion-item\">
+                    <div class=\"accordion-header\">
+                        <h3>Clownfish and Sea Anemones</h3>
+                        <span class=\"accordion-icon\">+</span>
+                    </div>
+                    <div class=\"accordion-content\">
+                        <div class=\"accordion-content-inner\">
+                            <div class=\"flex align-center\">
+                                <div>
+                                    <p>One of the most famous symbiotic relationships in coral reefs is between clownfish and sea anemones:</p>
+                                    <ul style=\"margin-bottom: 1rem; padding-left: 1.5rem;\">
+                                        <li>Clownfish live among the venomous tentacles of sea anemones, protected from the anemone's sting by a mucus layer</li>
+                                        <li>The clownfish defends the anemone from predators and parasites</li>
+                                        <li>The fish's waste provides nutrients for the anemone</li>
+                                        <li>The anemone provides protection for the clownfish from predators</li>
+                                    </ul>
+                                </div>
+                                <img src=\"https://oceanservice.noaa.gov/facts/clownfish.jpg\" alt=\"Clownfish and Anemone\" style=\"max-width: 300px; border-radius: 8px;\">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Zones Section -->
+    <section id=\"zones\">
+        <div class=\"container\">
+            <h2>Coral Reef Zones</h2>
+            <p>Coral reefs have distinct zones with different environmental conditions, supporting various types of coral and marine life.</p>
+            
+            <div class=\"chart-container\">
+                <h3>Reef Zonation Profile</h3>
+                <canvas id=\"reefZoneChart\" width=\"400\" height=\"200\"></canvas>
+            </div>
+            
+            <div class=\"grid\">
+                <div class=\"card\">
+                    <img src=\"https://oceanservice.noaa.gov/facts/reef-flat.jpg\" alt=\"Reef Flat\" class=\"card-img\">
+                    <div class=\"card-content\">
+                        <h3>Reef Flat</h3>
+                        <p>The shallow platform between the shoreline and reef crest. This area experiences significant wave action, variable temperatures, and can be exposed during low tides. Typically dominated by more robust coral species and algae.</p>
+                    </div>
+                </div>
+                
+                <div class=\"card\">
